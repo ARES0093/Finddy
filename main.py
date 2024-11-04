@@ -3,10 +3,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import streamlit as st
 
-# Set page configuration
 st.set_page_config(page_title="Finddy Stock Analyzer", layout="centered")
 
-# Improved CSS styling for a more aesthetic appearance
+#CSS styling
 st.markdown("""
     <style>
         /* Background color */
@@ -86,20 +85,20 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Title and description
+# Title 
 st.title('📈 Finddy 😎❤️ - Stock Analysis Assistant')
 
-# Initialize an empty list to store the stock query history
+#History 
 if 'stock_history' not in st.session_state:
     st.session_state['stock_history'] = []
 
-# Create a centered input bar for the stock ticker
+#Ticker 
 with st.container():
     st.markdown('<div class="centered-input">', unsafe_allow_html=True)
     ticker = st.text_input("Enter Stock Ticker (e.g., AAPL)", value="AAPL").upper()
     st.markdown('</div>', unsafe_allow_html=True)
 
-# Sidebar configuration for analysis options
+# Sidebar 
 st.sidebar.title("Stock Analyzer Options")
 analysis_type = st.sidebar.selectbox(
     "Choose Analysis Type",
@@ -164,7 +163,7 @@ def plot_stock_price(ticker):
     st.image('stock_price.png', use_column_width=True)
     plt.close()
 
-# Display results in a card-style main area
+# Display results 
 st.header(f"Analysis Results for {ticker}")
 result_container = st.empty()
 
@@ -199,7 +198,7 @@ if ticker:
         st.subheader(f"{ticker} Stock Price Over the Last Year")
         plot_stock_price(ticker)
 
-# Display stock query history in the sidebar
+# Display stock query history 
 st.sidebar.header("Stock Query History")
 if st.session_state['stock_history']:
     st.sidebar.markdown('<div class="history-box">', unsafe_allow_html=True)
